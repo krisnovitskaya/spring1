@@ -9,25 +9,19 @@ public class Product {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
+
 
     public Product(long id, String name, int price) {
         this.id = id;
@@ -35,6 +29,10 @@ public class Product {
         this.price = price;
     }
 
-    public Product() {
+
+
+    @Override
+    public String toString() {
+        return String.format("name = %s; price = %d; id = %d",getName(),getPrice(),getId());
     }
 }
