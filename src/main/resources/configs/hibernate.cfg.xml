@@ -15,5 +15,6 @@
 
         <mapping class="kris.novitskaya.spring1.hibernate.Customer"/>
         <mapping class="kris.novitskaya.spring1.hibernate.Product"/>
+        <mapping class="kris.novitskaya.spring1.hibernate.PurchaseDetails"/>
     </session-factory>
 </hibernate-configuration>

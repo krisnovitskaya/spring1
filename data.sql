@@ -27,25 +27,25 @@ INSERT INTO products (title, price) VALUES
 
 
 DROP TABLE IF EXISTS products_customers CASCADE;
-CREATE TABLE products_customers (product_id bigint, customer_id bigint, FOREIGN KEY (product_id) REFERENCES products (id), FOREIGN KEY (customer_id) REFERENCES customers (id));
-INSERT INTO products_customers (product_id, customer_id) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 5),
-(7, 3),
-(8, 2),
-(9, 3),
-(10, 1),
-(1, 2),
-(2, 5),
-(5, 2),
-(6, 2),
-(7, 1),
-(10, 2),
-(10, 2);
+CREATE TABLE products_customers (id bigserial PRIMARY KEY, product_id bigint, customer_id bigint, actual_price int, FOREIGN KEY (product_id) REFERENCES products (id), FOREIGN KEY (customer_id) REFERENCES customers (id));
+INSERT INTO products_customers (product_id, customer_id, actual_price) VALUES
+(1, 1, 100),
+(2, 2, 30),
+(3, 3, 200),
+(4, 4, 150),
+(5, 5, 25),
+(6, 5, 90),
+(7, 3, 50),
+(8, 2, 20),
+(9, 3, 220),
+(10, 1, 88),
+(1, 2, 14),
+(2, 5, 25),
+(5, 2, 45),
+(6, 2, 45),
+(7, 1, 48),
+(10, 2, 48),
+(10, 2, 48);
 
 
 

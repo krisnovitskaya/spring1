@@ -5,8 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Service {
@@ -62,8 +60,6 @@ public class Service {
     }
 
 
-
-
     public List<Customer> getProductCustomersList(long productID) throws ResourceNotFoundException {
         session = factory.getCurrentSession();
         session.beginTransaction();
@@ -77,6 +73,25 @@ public class Service {
         } finally {
             session.getTransaction().commit();
         }
+    }
+
+    public void detailing(long customerID, long productID) {
+        session = factory.getCurrentSession();
+        session.beginTransaction();
+
+//        PurchaseDetails purchaseDetails = (PurchaseDetails) session.getNamedQuery("details")
+//                    .setParameter("p_id", productID)
+//                    .setParameter("c_id", customerID)
+//                    .getSingleResult();
+
+        //namedQuery выдает ошибку. лог в error.txt
+
+        String query = String.format("SELECT pc FROM PurchaseDetails pc WHERE pc.product = %d and pc.customer = %d", productID, customerID);
+        PurchaseDetails purchaseDetails = session.createQuery(query, PurchaseDetails.class).getSingleResult();
+
+        System.out.println(purchaseDetails.getActualPrice() + " actual price");
+        System.out.println(purchaseDetails.getProduct().getPrice() + " current price");
+        session.getTransaction().commit();
     }
 
 

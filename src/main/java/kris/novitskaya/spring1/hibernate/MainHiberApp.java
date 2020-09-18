@@ -17,6 +17,7 @@ public class MainHiberApp {
 
             //service.deleteCustomer(3l);
             System.out.println(service.getCustomerProductsList(1L));
+            service.detailing(5l, 5l);
             //System.out.println(service.getProductCustomersList(2L));
             //service.deleteProduct(10L);
         } catch (ResourceNotFoundException e) {
