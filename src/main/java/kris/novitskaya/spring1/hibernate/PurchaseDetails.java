@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "products_customers")
 @NamedQueries({
-        @NamedQuery(name = "details", query = "SELECT pc FROM PurchaseDetails pc WHERE pc.product = :p_id and pc.customer = :c_id")
+        @NamedQuery(name = "details", query = "SELECT pc FROM PurchaseDetails pc WHERE pc.product.id = :p_id and pc.customer.id = :c_id"),
+        @NamedQuery(name = "test", query = "SELECT pc FROM PurchaseDetails pc WHERE pc.product = :id")
 })
 public class PurchaseDetails {
     @Id

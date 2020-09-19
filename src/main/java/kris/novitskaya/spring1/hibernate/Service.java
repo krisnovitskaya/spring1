@@ -47,9 +47,6 @@ public class Service {
         List<Product> list = new ArrayList<>();
         try {
             Customer customer = session.get(Customer.class, customerID);
-
-            //Какие существуют адекватные варианты борьбы с LazyInitializationException, сохраняя lazyinitialization?
-            //если принудительно не "выкачать" (sout или как ниже) вылезает ошибка.
             list.addAll(customer.getProducts());
             return list;
         } catch (NullPointerException e) {
@@ -79,16 +76,10 @@ public class Service {
         session = factory.getCurrentSession();
         session.beginTransaction();
 
-//        PurchaseDetails purchaseDetails = (PurchaseDetails) session.getNamedQuery("details")
-//                    .setParameter("p_id", productID)
-//                    .setParameter("c_id", customerID)
-//                    .getSingleResult();
-
-        //namedQuery выдает ошибку. лог в error.txt
-
-        String query = String.format("SELECT pc FROM PurchaseDetails pc WHERE pc.product = %d and pc.customer = %d", productID, customerID);
-        PurchaseDetails purchaseDetails = session.createQuery(query, PurchaseDetails.class).getSingleResult();
-
+        PurchaseDetails purchaseDetails = (PurchaseDetails) session.getNamedQuery("details")
+                    .setParameter("p_id", productID)
+                    .setParameter("c_id", customerID)
+                    .getSingleResult();
         System.out.println(purchaseDetails.getActualPrice() + " actual price");
         System.out.println(purchaseDetails.getProduct().getPrice() + " current price");
         session.getTransaction().commit();
