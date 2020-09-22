@@ -1,0 +1,46 @@
+Ошибка возникает при использовании NamedQuery
+
+
+Exception in thread "main" javax.persistence.PersistenceException: org.hibernate.property.access.spi.PropertyAccessException: Error accessing field [private java.lang.Long kris.novitskaya.spring1.hibernate.Product.id] by reflection for persistent property [kris.novitskaya.spring1.hibernate.Product#id] : 5
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:154)
+	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1534)
+	at org.hibernate.query.internal.AbstractProducedQuery.getSingleResult(AbstractProducedQuery.java:1573)
+	at kris.novitskaya.spring1.hibernate.Service.detailing(Service.java:85)
+	at kris.novitskaya.spring1.hibernate.MainHiberApp.main(MainHiberApp.java:20)
+Caused by: org.hibernate.property.access.spi.PropertyAccessException: Error accessing field [private java.lang.Long kris.novitskaya.spring1.hibernate.Product.id] by reflection for persistent property [kris.novitskaya.spring1.hibernate.Product#id] : 5
+	at org.hibernate.property.access.spi.GetterFieldImpl.get(GetterFieldImpl.java:75)
+	at org.hibernate.tuple.entity.AbstractEntityTuplizer.getIdentifier(AbstractEntityTuplizer.java:223)
+	at org.hibernate.persister.entity.AbstractEntityPersister.getIdentifier(AbstractEntityPersister.java:5035)
+	at org.hibernate.persister.entity.AbstractEntityPersister.isTransient(AbstractEntityPersister.java:4735)
+	at org.hibernate.engine.internal.ForeignKeys.isTransient(ForeignKeys.java:294)
+	at org.hibernate.engine.internal.ForeignKeys.getEntityIdentifierIfNotUnsaved(ForeignKeys.java:344)
+	at org.hibernate.type.EntityType.getIdentifier(EntityType.java:495)
+	at org.hibernate.type.EntityType.nullSafeSet(EntityType.java:288)
+	at org.hibernate.param.NamedParameterSpecification.bind(NamedParameterSpecification.java:53)
+	at org.hibernate.loader.hql.QueryLoader.bindParameterValues(QueryLoader.java:648)
+	at org.hibernate.loader.Loader.prepareQueryStatement(Loader.java:2115)
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2029)
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2007)
+	at org.hibernate.loader.Loader.doQuery(Loader.java:953)
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:354)
+	at org.hibernate.loader.Loader.doList(Loader.java:2810)
+	at org.hibernate.loader.Loader.doList(Loader.java:2792)
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2624)
+	at org.hibernate.loader.Loader.list(Loader.java:2619)
+	at org.hibernate.loader.hql.QueryLoader.list(QueryLoader.java:506)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.list(QueryTranslatorImpl.java:396)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.performList(HQLQueryPlan.java:219)
+	at org.hibernate.internal.SessionImpl.list(SessionImpl.java:1547)
+	at org.hibernate.query.internal.AbstractProducedQuery.doList(AbstractProducedQuery.java:1557)
+	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1525)
+	... 3 more
+Caused by: java.lang.IllegalArgumentException: Can not set java.lang.Long field kris.novitskaya.spring1.hibernate.Product.id to java.lang.Long
+	at java.base/jdk.internal.reflect.UnsafeFieldAccessorImpl.throwSetIllegalArgumentException(UnsafeFieldAccessorImpl.java:167)
+	at java.base/jdk.internal.reflect.UnsafeFieldAccessorImpl.throwSetIllegalArgumentException(UnsafeFieldAccessorImpl.java:171)
+	at java.base/jdk.internal.reflect.UnsafeFieldAccessorImpl.ensureObj(UnsafeFieldAccessorImpl.java:58)
+	at java.base/jdk.internal.reflect.UnsafeObjectFieldAccessorImpl.get(UnsafeObjectFieldAccessorImpl.java:36)
+	at java.base/java.lang.reflect.Field.get(Field.java:418)
+	at org.hibernate.property.access.spi.GetterFieldImpl.get(GetterFieldImpl.java:71)
+	... 27 more
+
+Process finished with exit code 1
